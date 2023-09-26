@@ -2,7 +2,8 @@ const express = require('express');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const app = express();
-const port = 3000;
+// const port = 3000;
+const port = process.env.PORT || 5001;
 
 // Use StealthPlugin to bypass some anti-bot measures
 puppeteer.use(StealthPlugin());
