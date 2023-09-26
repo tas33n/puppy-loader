@@ -1,5 +1,9 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
+const puppeteerExtra = require('puppeteer-extra');
+const stealthPlugin = require('puppeteer-extra-plugin-stealth');
+
+puppeteerExtra.use(stealthPlugin());
 
 const app = express();
 const port = process.env.PORT || 5001;
@@ -13,7 +17,7 @@ app.get('/p', async (req, res) => {
       return res.status(400).send('Missing URL parameter.');
     }
 
-    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+    const browser = await puppeteerExtra.launch({ args: ['--no-sandbox'] });
     const page = await browser.newPage();
 
     await page.goto(url);
